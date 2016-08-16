@@ -26,8 +26,10 @@ if rowIndexSet.Count == 1:
 	#Create replacement row using existing data plus our document property OilIP
 	#\r\n used for newline
 	#OilIP is a document property
-	data_for_new_row= str(col1)+ ","+ str(col2) + "," + str(OilIP)  + "," + str(OilB)  + "," + str(OilDi)  + "," + str(OilDmin)  + "," + str(DaysFlat) + "," + str(OilTechnicalEUROne) + "," + str(GasIP) + "," + str(GasB)+ "," + str(GasDi)+ "," + str(GasDmin)+ "," + str(GasDaysFlat)+ "," + str(GasTechnicalEUROne)+ "," + str(CumOilatDaysFlat)+ "," + str(Cum) + "," + str(MonthsProduced) + "," + str(CommercialEUR) + "," + str(NPV10)+ "," + str(IRRProperty) 
-	textData = "API,PROPNUM,Oil IP,Oil B,iOl Di,Oil Dmin,Oil Days Flat,Oil Technical EUR,Gas IP,Gas B,Gas Di,Gas Dmin,Gas Days Flat,Gas Technical EUR,Cum Oil at Days Flat,Cum,Months Produced,Commercial EUR,NPV-10,IRR\r\n" + data_for_new_row + "\r\n"
+	NPVTen = NPVTen/1000000
+	IRR = float(IRR)/100
+	data_for_new_row= str(col1)+ ","+ str(col2) + "," + str(OilIP)  + "," + str(OilB)  + "," + str(OilDi)  + "," + str(OilDmin)  + "," + str(DaysFlat) + "," + str(OilTechnicalEUROne) + "," + str(GasIP) + "," + str(GasB)+ "," + str(GasDi)+ "," + str(GasDmin)+ "," + str(GasDaysFlat)+ "," + str(GasTechnicalEUROne)+ "," + str(CumOilatDaysFlat)+ "," + str(Cum) + "," + str(MonthsProduced) + "," + str(CommercialEUR) + "," + str(NPVTen)+ "," + str(IRR) 
+	textData = "API,PROPNUM,Oil IP,Oil B,Oil Di,Oil Dmin,Oil Days Flat,Oil Technical EUR,Gas IP,Gas B,Gas Di,Gas Dmin,Gas Days Flat,Gas Technical EUR,Cum Oil at Days Flat,Cum,Months Produced,Commercial EUR,NPV-10,IRR\r\n" + data_for_new_row + "\r\n"
 
 	#Memory Stream stuff
 	stream = MemoryStream()
@@ -47,18 +49,18 @@ if rowIndexSet.Count == 1:
 	readerSettings.SetDataType(4, DataType.Real)
 	readerSettings.SetDataType(5, DataType.Real)
 	readerSettings.SetDataType(6, DataType.Real)
-	readerSettings.SetDataType(7, DataType.Undefined)
+	readerSettings.SetDataType(7, DataType.Real)
 	readerSettings.SetDataType(8, DataType.Real)
 	readerSettings.SetDataType(9, DataType.Real)
 	readerSettings.SetDataType(11, DataType.Real)
 	readerSettings.SetDataType(12, DataType.Real)
 	readerSettings.SetDataType(13, DataType.Real)
-	readerSettings.SetDataType(14, DataType.Undefined)
-	readerSettings.SetDataType(15, DataType.Undefined)
-	readerSettings.SetDataType(16, DataType.Undefined)
-	readerSettings.SetDataType(17, DataType.Undefined)
-	readerSettings.SetDataType(18, DataType.String)
-	readerSettings.SetDataType(19, DataType.String)
+	readerSettings.SetDataType(14, DataType.Real)
+	readerSettings.SetDataType(15, DataType.Real)
+	readerSettings.SetDataType(16, DataType.Real)
+	readerSettings.SetDataType(17, DataType.Real)
+	readerSettings.SetDataType(18, DataType.Real)
+	readerSettings.SetDataType(19, DataType.Real)
 	readerSettings.SetDataType(20, DataType.Real)
 
 
