@@ -7,6 +7,11 @@ from Spotfire.Dxp.Data import *
 dataTable = Document.Data.Tables["DCA Parameters"]
 rowIndexSet=Document.ActiveMarkingSelectionReference.GetSelection(dataTable).AsIndexSet()
 
+#Testing
+#col1 = dataTable.Columns["API"].RowValues.GetFormattedValue(rowIndexSet.First)
+#col2 = dataTable.Columns["PROPNUM"].RowValues.GetFormattedValue(rowIndexSet.First)
+#data_for_new_row= str(col1)+ ","+ str(col2) + "," + str(OilIP)  + "," + str(OilB)  + "," + str(OilDi)  + "," + str(OilDmin)  + "," + str(DaysFlat) + "," + str(OilTechnicalEUROne) + "," + str(GasIP) + "," + str(GasB)+ "," + str(GasDi)+ "," + str(GasDmin)+ "," + str(GasDaysFlat)+ "," + str(GasTechnicalEUROne)+ "," + str(CumOilatDaysFlat)+ "," + str(Cum) + "," + str(MonthsProduced) + "," + str(CommercialEUR) + "," + str(NPVTen)+ "," + str(IRR)
+
 
 #check that only 1 row is marked
 if rowIndexSet.Count == 1:
@@ -30,6 +35,7 @@ if rowIndexSet.Count == 1:
 	IRR = float(IRR)/100
 	data_for_new_row= str(col1)+ ","+ str(col2) + "," + str(OilIP)  + "," + str(OilB)  + "," + str(OilDi)  + "," + str(OilDmin)  + "," + str(DaysFlat) + "," + str(OilTechnicalEUROne) + "," + str(GasIP) + "," + str(GasB)+ "," + str(GasDi)+ "," + str(GasDmin)+ "," + str(GasDaysFlat)+ "," + str(GasTechnicalEUROne)+ "," + str(CumOilatDaysFlat)+ "," + str(Cum) + "," + str(MonthsProduced) + "," + str(CommercialEUR) + "," + str(NPVTen)+ "," + str(IRR) 
 	textData = "API,PROPNUM,Oil IP,Oil B,Oil Di,Oil Dmin,Oil Days Flat,Oil Technical EUR,Gas IP,Gas B,Gas Di,Gas Dmin,Gas Days Flat,Gas Technical EUR,Cum Oil at Days Flat,Cum,Months Produced,Commercial EUR,NPV-10,IRR\r\n" + data_for_new_row + "\r\n"
+	print data_for_new_row
 
 	#Memory Stream stuff
 	stream = MemoryStream()
@@ -62,12 +68,6 @@ if rowIndexSet.Count == 1:
 	readerSettings.SetDataType(18, DataType.Real)
 	readerSettings.SetDataType(19, DataType.Real)
 	readerSettings.SetDataType(20, DataType.Real)
-
-
-
-
-
-
 	textDataSource = TextFileDataSource(stream,readerSettings)
 	settings = AddRowsSettings(dataTable,textDataSource)
 	dataTable.AddRows(textDataSource,settings)
