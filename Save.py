@@ -5,26 +5,7 @@ from Spotfire.Dxp.Data import *
 
 #Get set of marked rows in data table
 dataTable = Document.Data.Tables["DCA Parameters"]
-###Get count of rows in data table
-rowCount = dataTable.RowCount
-#### Create index sets required to loop over rows
-rowsToInclude = IndexSet(rowCount,True)
-
-rowsToMark = IndexSet(rowCount,False)
-
-
-###create index set of the actual marked rows
-rowIndexSet = Document.ActiveMarkingSelectionReference.GetSelection(dataTable).AsIndexSet()
-
-#Gets the actual string input from the specificed column. use this so that we can store whatever ID is for the marked well so we can remark the row once I readd it
-MarkedWell = dataTable.Columns["PROPNUM"].RowValues.GetFormattedValue(rowIndexSet.First)
-
-#create cursor so we can refer to the column of interest
-##The quote needs to reference the column name you are trying to look into/work with
-columnCursor = DataValueCursor.CreateFormatted(dataTable.Columns["PROPNUM"])
-
-#ID = dataTable.Columns["PROPNUM"].RowValues.GetValue(rowIndexSet)
-
+rowIndexSet=Document.ActiveMarkingSelectionReference.GetSelection(dataTable).AsIndexSet()
 
 
 #check that only 1 row is marked
@@ -71,6 +52,7 @@ if rowIndexSet.Count == 1:
 	readerSettings.SetDataType(7, DataType.Real)
 	readerSettings.SetDataType(8, DataType.Real)
 	readerSettings.SetDataType(9, DataType.Real)
+	readerSettings.SetDataType(10, DataType.Real)
 	readerSettings.SetDataType(11, DataType.Real)
 	readerSettings.SetDataType(12, DataType.Real)
 	readerSettings.SetDataType(13, DataType.Real)
@@ -85,21 +67,8 @@ if rowIndexSet.Count == 1:
 
 
 
-	
+
 
 	textDataSource = TextFileDataSource(stream,readerSettings)
 	settings = AddRowsSettings(dataTable,textDataSource)
 	dataTable.AddRows(textDataSource,settings)
-
-	for row in dataTable.GetRows(rowsToInclude,columnCursor):
-		rowIndex = row.Index
-		print columnCursor.CurrentValue
-		if columnCursor.CurrentValue == MarkedWell
-		#	rowsToMark.AddIndex(rowIndex)
-		else
-		#	rowsToMark.Clear()
-
-
-
-#####Remark Row
-	Document.ActiveMarkingSelectionReference.SetSelection(RowSelection(rowsToMark), dataTable)
