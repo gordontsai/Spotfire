@@ -36,12 +36,6 @@ IRRProperty = DCA_Parameters.Columns["IRR"].Name
 
 
 
-####Define conditions for joins later
-joinConditionMap = {ColumnA : ColumnB}
-ignoredCols = []
-
- 
-
 #Remove oil DCA parameter colums before we readd them
 if Daily_Header.Columns.Contains("Oil IP"):
 	if OilIP == Daily_Header.Columns["Oil IP"].Name:
@@ -116,6 +110,16 @@ if Daily_Header.Columns.Contains("NPV-10"):
 if Daily_Header.Columns.Contains("IRR"):
 	if IRRProperty == Daily_Header.Columns["IRR"].Name:
 		Daily_Header.Columns.Remove("IRR")
+
+
+
+####Define conditions for joins later
+joinConditionMap = {ColumnA : ColumnB}
+ignoredCols = []
+
+ 
+
+
 
 #Remove B Value Column
 #if Column_IP == Application.Document.Data.Tables["Daily Header"].Columns["IP"].Name:
