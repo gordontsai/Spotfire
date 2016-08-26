@@ -55,7 +55,7 @@ ds = DataTableDataSource(Daily_Header)
 #dataSource = DataTableDataSource(Daily_Header)
 #flowBuilder = DataFlowBuilder(dataSource, Application.ImportContext)
 #sourceReader = flowBuilder.Execute(DataSourcePromptMode.None)
-ignoredCols =[]
+ignoredCols =[Daily_Header.Columns["Area"]]
 
 #ignoredCols = [DataColumnSignature(sourceReader.Columns["Latitude"])]
 

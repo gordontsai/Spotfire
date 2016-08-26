@@ -115,7 +115,16 @@ if Daily_Header.Columns.Contains("IRR"):
 
 ####Define conditions for joins later
 joinConditionMap = {ColumnA : ColumnB}
-ignoredCols = []
+#colnames = ["API"]
+if Daily_Header.Columns.Contains("API (2)")
+	ignoredCols = [DataColumnSignature(DCA_Parameters.Columns["API"]),DataColumnSignature(DCA_Parameters.Columns["API (2)"])]
+
+else
+	ignoredCols = [DataColumnSignature(DCA_Parameters.Columns["API"])]	
+#for col in DCA_Parameters.Columns:
+ #   if col.Name != colnames:
+  #        ignoredCols.append(DataColumnSignature(col))
+
 
  
 
