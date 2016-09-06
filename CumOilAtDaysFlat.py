@@ -50,4 +50,5 @@ Example output:
 
 for c in dataTable.GetRows(rowIndexSet, cursor):
 	rowIndex = c.Index
-	if int(column)
+	if int(cursor.CurrentValue) != 0 || int(cursor.CurrentValue) != "(Empty)
+		print 1 
