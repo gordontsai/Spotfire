@@ -7,7 +7,7 @@ from Spotfire.Dxp.Data import *
 dataTable = Document.Data.Tables["Oxy Eag Daily Production"]
 rowIndexSet=Document.ActiveMarkingSelectionReference.GetSelection(dataTable).AsIndexSet()
 cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Cum Oil at Days Flat"])
-
+list = []
 
 
 
@@ -43,5 +43,10 @@ Example output:
 
 for c in dataTable.GetRows(rowIndexSet, cursor):
 	rowIndex = c.Index
-	if (str(cursor.CurrentValue) != str("0")) or (str(cursor.CurrentValue) != str("Empty")):
-		print "hi" 
+	if (str(cursor.CurrentValue) != str("(Empty)")):
+		list.append(cursor.CurrentValue)
+		x = max(list)
+		x = float(x)/1000
+		print x
+
+Document.Properties["CumOilatDaysFlat"] = x
