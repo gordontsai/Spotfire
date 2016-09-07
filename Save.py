@@ -2,6 +2,39 @@ from Spotfire.Dxp.Data import AddRowsSettings
 from System.IO import StringReader, StreamReader, StreamWriter, MemoryStream, SeekOrigin
 from Spotfire.Dxp.Data.Import import TextFileDataSource, TextDataReaderSettings
 from Spotfire.Dxp.Data import *
+from System.Collections.Generic import 
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+import clr
+
+"""Run update scripts to update the document property
+
+http://votolab.blogspot.com/2016/09/executing-scripts-within-other-scripts.html
+
+Body of script 
+
+from System.Collections.Generic import Dictionary
+from Spotfire.Dxp.Application.Scripting import ScriptDefinition
+import clr
+scriptDef = clr.Reference[ScriptDefinition]()
+#The ExecuteScript method takes in the script code as a string parameter, so we must look the script up and output its code using the ScriptCode property 
+Document.ScriptManager.TryGetScript("secondScript", scriptDef)
+params = Dictionary[str, object]()
+Document.ScriptManager.ExecuteScript(scriptDef.ScriptCode, params)
+
+"""
+
+
+scriptDef = clr.Reference[ScriptDefinition]()
+#The ExecuteScript method takes in the script code as a string parameter, so we must look the script up and output its code using the ScriptCode property 
+Document.ScriptManager.TryGetScript("CumOilAtDaysFlat", scriptDef)
+params = Dictionary[str, object]()
+Document.ScriptManager.ExecuteScript(scriptDef.ScriptCode, params)
+
+
+
+
+
+
 
 #Get set of marked rows in data table
 dataTable = Document.Data.Tables["DCA Parameters"]
