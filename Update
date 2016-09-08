@@ -4,6 +4,9 @@ from Spotfire.Dxp.Data.Import import TextFileDataSource, TextDataReaderSettings
 from Spotfire.Dxp.Data import *
 
 
+
+
+
 dataTable = Document.Data.Tables["Oxy Eag Daily Production"]
 rowIndexSet=Document.ActiveMarkingSelectionReference.GetSelection(dataTable).AsIndexSet()
 cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Cum Oil at Days Flat"])
@@ -13,6 +16,7 @@ list = []
 DaysFlat = Document.Properties["DaysFlat"] #Real
 OilIP = Document.Properties["OilIP"] #Real
 OilB = Document.Properties["OilB"] #Real
+OilDmin = Document.Properties["OilDmin"]
 #MonthsProduced comes in as a real
 
 #Uncomment this if we're using R scripts to calc secondary TC parametsr
@@ -22,6 +26,15 @@ OilAexp = Document.Properties["OilAexpTest"]
 OilNpexp = Document.Properties["OilNpexpTest"]
 OilAi = Document.Properties["OilAiTest"]
 case = Document.Properties["Case"]
+
+
+a = OilB
+b = OilAi
+c = OilDmin
+
+Document.Properties["OilB"] = 4.6960
+Document.Properties["OilAiTest"] = 7.3282
+Document.Properties["OilDmin"] = 8.3439
 
 ###TC Parameters that are calculated as string custome expressions
 #OilTexp = -((1/(OilB*math.log(1-(OilDmin/100)))+1/(OilAi*12*OilB)))*12
