@@ -82,6 +82,10 @@ for c in dataTable.GetRows(rowIndexSet, cursor):
 		list.append(cursor.CurrentValue)
 		CumOilAtDaysFlat = max(list)
 		CumOilAtDaysFlat = float(CumOilAtDaysFlat)/1000
+	if not list:
+		list.append(0)
+		CumOilAtDaysFlat = max(list)
+		CumOilAtDaysFlat = float(CumOilAtDaysFlat)/1000
 
 Document.Properties["CumOilAtDaysFlat"] = CumOilAtDaysFlat
 
@@ -138,6 +142,10 @@ Document.Properties["TCCumThruAbove"] = TCCumThruAbove
 
 CommercialEUR= Document.Properties["CommercialEUR"]
 Document.Properties["CommercialEUR"] = CommercialEUR
+
+Document.Properties["OilB"] = a
+Document.Properties["OilAiTest"] = b
+Document.Properties["OilDmin"] = c
 
 
 
