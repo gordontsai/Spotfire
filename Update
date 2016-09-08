@@ -45,8 +45,36 @@ for c in dataTable.GetRows(rowIndexSet, cursor):
 	rowIndex = c.Index
 	if (str(cursor.CurrentValue) != str("(Empty)")):
 		list.append(cursor.CurrentValue)
-		x = max(list)
-		x = float(x)/1000
-		print x
+		CumOilAtDaysFlat = max(list)
+		CumOilAtDaysFlat = float(CumOilAtDaysFlat)/1000
 
-Document.Properties["CumOilAtDaysFlat"] = x
+Document.Properties["CumOilAtDaysFlat"] = CumOilAtDaysFlat
+
+
+#Cum2Date
+cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Cum Oil"])
+list = []
+
+for c in dataTable.GetRows(rowIndexSet, cursor):
+	rowIndex = c.Index
+	if (str(cursor.CurrentValue) != str("(Empty)")):
+		list.append(cursor.CurrentValue)
+		Cum2Date = max(list)
+		Cum2Date = float(Cum2Date)/1000
+
+Document.Properties["Cum2Date"] = Cum2Date
+
+
+#Months Produced
+cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Month"])
+list = []
+
+for c in dataTable.GetRows(rowIndexSet, cursor):
+	rowIndex = c.Index
+	if (str(cursor.CurrentValue) != str("(Empty)")):
+		list.append(cursor.CurrentValue)
+		MonthsProduced = max(list)
+
+Document.Properties["MonthsProduced"] = MonthsProduced
+
+###TC Curve Through Above
