@@ -2,7 +2,7 @@ from Spotfire.Dxp.Data import AddRowsSettings
 from System.IO import StringReader, StreamReader, StreamWriter, MemoryStream, SeekOrigin
 from Spotfire.Dxp.Data.Import import TextFileDataSource, TextDataReaderSettings
 from Spotfire.Dxp.Data import *
-from System.Collections.Generic import 
+from System.Collections.Generic import Dictionary
 from Spotfire.Dxp.Application.Scripting import ScriptDefinition
 import clr	
 
