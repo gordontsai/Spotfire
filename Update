@@ -21,7 +21,7 @@ OilQexp = Document.Properties["OilQexpTest"]
 OilAexp = Document.Properties["OilAexpTest"]
 OilNpexp = Document.Properties["OilNpexpTest"]
 OilAi = Document.Properties["OilAiTest"]
-
+case = Document.Properties["Case"]
 
 ###TC Parameters that are calculated as string custome expressions
 #OilTexp = -((1/(OilB*math.log(1-(OilDmin/100)))+1/(OilAi*12*OilB)))*12
@@ -111,7 +111,7 @@ elif MonthsProduced > 0 and MonthsProduced < OilTexp:
 	TCCumThruAbove	= (DaysFlat*OilIP)+(OilIP*30.4)/(OilAi*(1-OilB))*(1-1/((1+OilAi*(Max([Month])-DaysFlat/30.4)*OilB)^((1-OilB)/OilB)))
 
 elif MonthsProduced > 0 and MonthsProduced > OilTexp:
-	TCCumThruAbove = (OilQexp*30.4)/OilAexp*(1-exp(-OilAexp*((((MonthsProduced)-DaysFlat/30.4))-round(OilTexp,0))))+OilNpexp
+	TCCumThruAbove = case
 
 else: 
 	TCCumThruAbove = 0
