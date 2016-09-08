@@ -123,6 +123,7 @@ Document.Properties["TCCumThruAbove"] = TCCumThruAbove
 
 ###EUR Historical/ Forecast
 
+CommercialEUR= Document.Properties["CommercialEUR"]
 Document.Properties["CommercialEUR"] = CommercialEUR
 
 
