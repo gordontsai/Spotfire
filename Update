@@ -99,7 +99,7 @@ if MonthsProduced > 0 and MonthsProduced < (DaysFlat/30.4):
 	TCCumThruAbove = MonthsProduced*(OilIP*30.4)
 
 elif MonthsProduced > 0 and MonthsProduced < OilTexp:
-	TCCumThruAbove	= (DaysFlat*OilIP)+(OilIP}*30.4)/(OilAi}*(1-OilB))*(1-1/((1+OilAi}*(MonthsProduced)-DaysFlat/30.4)*OilB)^((1-OilB)/OilB)))
+	TCCumThruAbove	= (DaysFlat*OilIP)+(OilIP*30.4)/(OilAi*(1-OilB))*(1-1/((1+OilAi*(MonthsProduced)-DaysFlat/30.4)*OilB)^((1-OilB)/OilB)))
 
 elif MonthsProduced > 0 and MonthsProduced > OilTexp:
 	TCCumThruAbove = (OilQexp*30.4)/OilAexp*(1-exp(-OilAexp*((((MonthsProduced)-DaysFlat/30.4))-round(OilTexp,0))))+OilNpexp
