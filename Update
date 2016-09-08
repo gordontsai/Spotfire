@@ -86,12 +86,12 @@ OilAi = Document.Properties["OilAi"] #String
 OilB = Document.Properties["OilB"] #Real
 OilQexp = Document.Properties["OilQexp"] #String
 OilAexp = Document.Properties["OilAexp"] #String
-OilNexp = Document.Properties["OilNexp"] #String
+OilNpexp = Document.Properties["OilNpexp"] #String
 #MonthsProduced comes in as a real
 OilTexp = float(OilTexp)
 OilQexp = float(OilQexp)
 OilAexp = float(OilAexp)
-OilNexp = float(OilNexp)
+OilNpexp = float(OilNpexp)
 OilAi = float(OilAi)
 
 
