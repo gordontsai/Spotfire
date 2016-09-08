@@ -15,12 +15,20 @@ OilIP = Document.Properties["OilIP"] #Real
 OilB = Document.Properties["OilB"] #Real
 #MonthsProduced comes in as a real
 
+#Uncomment this if we're using R scripts to calc secondary TC parametsr
+OilTexp = Document.Properties["OilTexpTest"]
+OilQexp = Document.Properties["OilQexpTest"]
+OilAexp = Document.Properties["OilAexpTest"]
+OilNpexp = Document.Properties["OilNpexpTest"]
+OilAi = Document.Properties["OilAiTest"]
+
+
 ###TC Parameters that are calculated as string custome expressions
-OilTexp = -((1/(OilB*math.log(1-(OilDmin/100)))+1/(OilAi*12*OilB)))*12
-OilQexp = OilIP/((1+OilAi*(math.ceil(OilTexp)-1)*OilB)^(1/OilB))
-OilAexp = -math.log(1-OilDmin/100)/12
-OilNpexp = OilIP*365/12/(OilAi*(1-OilB))*(1-1/((1+OilAi*round(OilTexp,0)*OilB)^((1-OilB)/OilB)))
-OilAi = (1/OilB*((1-OilDi/100)^(-OilB)-1))/12
+#OilTexp = -((1/(OilB*math.log(1-(OilDmin/100)))+1/(OilAi*12*OilB)))*12
+#OilQexp = OilIP/((1+OilAi*(math.ceil(OilTexp)-1)*OilB)^(1/OilB))
+#OilAexp = -math.log(1-OilDmin/100)/12
+#OilNpexp = OilIP*365/12/(OilAi*(1-OilB))*(1-1/((1+OilAi*round(OilTexp,0)*OilB)^((1-OilB)/OilB)))
+#OilAi = (1/OilB*((1-OilDi/100)^(-OilB)-1))/12
 
 
 
