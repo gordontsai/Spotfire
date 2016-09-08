@@ -78,3 +78,46 @@ for c in dataTable.GetRows(rowIndexSet, cursor):
 Document.Properties["MonthsProduced"] = MonthsProduced
 
 ###TC Curve Through Above
+#Read Document Properties I need
+DaysFlat = Document.Properties["DaysFlat"] #Real
+OilIP = Document.Properties["OilIP"] #Real
+OilTexp = Document.Properties["OilTexp"] #String
+OilAi = Document.Properties["OilAi"] #String
+OilB = Document.Properties["OilB"] #Real
+OilQexp = Document.Properties["OilQexp"] #String
+OilAexp = Document.Properties["OilAexp"] #String
+OilNexp = Document.Properties["OilNexp"] #String
+#MonthsProduced comes in as a real
+OilTexp = float(OilTexp)
+OilQexp = float(OilQexp)
+OilAexp = float(OilAexp)
+OilNexp = float(OilNexp)
+OilAi = float(OilAi)
+
+
+if MonthsProduced > 0 and MonthsProduced < (DaysFlat/30.4):
+	TCCumThruAbove = MonthsProduced*(OilIP*30.4)
+
+elif MonthsProduced > 0 and MonthsProduced < OilTexp:
+	TCCumThruAbove	= (DaysFlat*OilIP)+(OilIP}*30.4)/(OilAi}*(1-OilB))*(1-1/((1+OilAi}*(MonthsProduced)-DaysFlat/30.4)*OilB)^((1-OilB)/OilB)))
+
+elif MonthsProduced > 0 and MonthsProduced > OilTexp:
+	TCCumThruAbove = (OilQexp*30.4)/OilAexp*(1-exp(-OilAexp*((((MonthsProduced)-DaysFlat/30.4))-round(OilTexp,0))))+OilNpexp
+
+else: 
+	TCCumThruAbove = 0
+
+TCCumThruAbove = TCCumThruAbove/1000
+
+Document.Properties["TCCumThruAbove"] = TCCumThruAbove
+
+
+###EUR Historical/ Forecast
+EUR = (((OilQexp*365/12)/(OilAexp)*(1-exp(-OilAexp*(600-Floor(OilTexp))))+OilNpexp+OilIP*DaysFlat)/1000) - TCThruCumAbove +Cum2Date
+
+
+
+
+
+
+
