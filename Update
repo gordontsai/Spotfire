@@ -122,8 +122,6 @@ Document.Properties["TCCumThruAbove"] = TCCumThruAbove
 
 
 ###EUR Historical/ Forecast
-CommercialEUR = (((OilQexp*365/12)/(OilAexp)*(1-exp(-OilAexp*(600-math.floor(OilTexp))))+OilNpexp+OilIP*DaysFlat)/1000) - TCThruCumAbove +Cum2Date
-
 
 Document.Properties["CommercialEUR"] = CommercialEUR
 
