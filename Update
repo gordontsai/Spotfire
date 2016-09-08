@@ -9,6 +9,20 @@ rowIndexSet=Document.ActiveMarkingSelectionReference.GetSelection(dataTable).AsI
 cursor = DataValueCursor.CreateFormatted(dataTable.Columns["Cum Oil at Days Flat"])
 list = []
 
+#Read Document Properties I need
+DaysFlat = Document.Properties["DaysFlat"] #Real
+OilIP = Document.Properties["OilIP"] #Real
+OilB = Document.Properties["OilB"] #Real
+#MonthsProduced comes in as a real
+
+###TC Parameters that are calculated as string custome expressions
+OilTexp = -((1/(OilB*math.log(1-(OilDmin/100)))+1/(OilAi*12*OilB)))*12
+OilQexp = OilIP/((1+OilAi*(math.ceil(OilTexp)-1)*OilB)^(1/OilB))
+OilAexp = -math.log(1-OilDmin/100)/12
+OilNpexp = OilIP*365/12/(OilAi*(1-OilB))*(1-1/((1+OilAi*round(OilTexp,0)*OilB)^((1-OilB)/OilB)))
+OilAi = (1/OilB*((1-OilDi/100)^(-OilB)-1))/12
+
+
 
 
 
@@ -78,21 +92,8 @@ for c in dataTable.GetRows(rowIndexSet, cursor):
 Document.Properties["MonthsProduced"] = MonthsProduced
 
 ###TC Curve Through Above
-#Read Document Properties I need
-DaysFlat = Document.Properties["DaysFlat"] #Real
-OilIP = Document.Properties["OilIP"] #Real
-OilTexp = Document.Properties["OilTexp"] #String
-OilAi = Document.Properties["OilAi"] #String
-OilB = Document.Properties["OilB"] #Real
-OilQexp = Document.Properties["OilQexp"] #String
-OilAexp = Document.Properties["OilAexp"] #String
-OilNpexp = Document.Properties["OilNpexp"] #String
-#MonthsProduced comes in as a real
-OilTexp = float(OilTexp)
-OilQexp = float(OilQexp)
-OilAexp = float(OilAexp)
-OilNpexp = float(OilNpexp)
-OilAi = float(OilAi)
+
+
 
 
 if MonthsProduced > 0 and MonthsProduced < (DaysFlat/30.4):
@@ -113,7 +114,7 @@ Document.Properties["TCCumThruAbove"] = TCCumThruAbove
 
 
 ###EUR Historical/ Forecast
-CommercialEUR = (((OilQexp*365/12)/(OilAexp)*(1-exp(-OilAexp*(600-Floor(OilTexp))))+OilNpexp+OilIP*DaysFlat)/1000) - TCThruCumAbove +Cum2Date
+CommercialEUR = (((OilQexp*365/12)/(OilAexp)*(1-exp(-OilAexp*(600-math.floor(OilTexp))))+OilNpexp+OilIP*DaysFlat)/1000) - TCThruCumAbove +Cum2Date
 
 
 Document.Properties["CommercialEUR"] = CommercialEUR
